@@ -1,0 +1,50 @@
+Bootstrap: debootstrap 
+OSVersion: focal 
+MirrorURL: http://archive.ubuntu.com/ubuntu/ 
+ 
+%post 
+  export PYTHONNOUSERSITE="true" 
+  sed -i 's/main/main restricted universe/g' /etc/apt/sources.list 
+  apt-get update 
+ 
+  apt install -y bwa wget samtools bamtools bcftools picard-tools vim 
+  apt-get install -y libopenblas-dev libcurl4-openssl-dev libopenmpi-dev openmpi-bin openmpi-common openmpi-doc openssh-client openssh-server python3-pip
+
+  mkdir /opt/genomes/ChrM/Human/hg38 -p 
+  wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/chromosomes/chrM.fa.gz  -O /opt/genomes/ChrM/Human/hg38/chrM.fa.gz 
+  cd /opt/genomes/ChrM/Human/hg38 
+  gunzip chrM.fa.gz  
+  bwa index chrM.fa 
+  samtools faidx chrM.fa 
+  sed -e"s/chrM/MT/" chrM.fa > MT.fa 
+  bwa index MT.fa 
+  samtools faidx MT.fa 
+  mkdir /opt/genomes/ChrM/MusMusculus/mm39 -p 
+  wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/chromosomes/chrM.fa.gz -O /opt/genomes/ChrM/MusMusculus/mm39/chrM.fa.gz 
+  cd /opt/genomes/ChrM/MusMusculus/mm39 
+  gunzip chrM.fa.gz 
+  bwa index chrM.fa 
+  samtools faidx chrM.fa 
+  sed -e"s/chrM/MT/" chrM.fa > MT.fa 
+  bwa index MT.fa 
+  samtools faidx MT.fa 
+ 
+  apt install -y --no-install-recommends software-properties-common dirmngr
+  wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+  add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+  apt install -y r-base r-base-dev
+ 
+  echo "install.packages(c('BiocManager', 'Matrix', 'data.table'))" >  Install_cpan.R
+  R CMD BATCH Install_cpan.R
+  echo "BiocManager::install(c('GenomicRanges', 'SummarizedExperiment'))" >  Install_Bioc.R
+  R CMD BATCH Install_Bioc.R
+
+  pip3 install --upgrade pyyaml numpy mgatk
+ 
+%runscript 
+ 
+%environment 
+    export PYTHONNOUSERSITE="true" 
+    export MYVAR="Hello" 
+~                         
