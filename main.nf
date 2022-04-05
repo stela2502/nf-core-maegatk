@@ -1,11 +1,11 @@
 #!/usr/bin/env nextflow
 /*
 ========================================================================================
-    nf-core/chrmtags
+    nf-core/mitotags
 ========================================================================================
-    Github : https://github.com/nf-core/chrmtags
-    Website: https://nf-co.re/chrmtags
-    Slack  : https://nfcore.slack.com/channels/chrmtags
+    Github : https://github.com/nf-core/mitotags
+    Website: https://nf-co.re/mitotags
+    Slack  : https://nfcore.slack.com/channels/mitotags
 ----------------------------------------------------------------------------------------
 */
 
@@ -33,13 +33,13 @@ WorkflowMain.initialise(workflow, params, log)
 ========================================================================================
 */
 
-include { CHRMTAGS } from './workflows/chrmtags'
+include { MITOTAGS } from './workflows/mitotags'
 
 //
-// WORKFLOW: Run main nf-core/chrmtags analysis pipeline
+// WORKFLOW: Run main nf-core/mitotags analysis pipeline
 //
-workflow NFCORE_CHRMTAGS {
-    CHRMTAGS ()
+workflow NFCORE_MITOTAGS {
+    MITOTAGS ()
 }
 
 /*
@@ -53,7 +53,7 @@ workflow NFCORE_CHRMTAGS {
 // See: https://github.com/nf-core/rnaseq/issues/619
 //
 workflow {
-    NFCORE_CHRMTAGS ()
+    NFCORE_MITOTAGS ()
 }
 
 /*

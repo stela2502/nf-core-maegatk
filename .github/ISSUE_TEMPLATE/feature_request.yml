@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest an idea for the nf-core/chrmtags pipeline
+description: Suggest an idea for the nf-core/mitotags pipeline
 labels: enhancement
 body:
   - type: textarea

@@ -1,5 +1,5 @@
 //
-// This file holds several functions specific to the workflow/chrmtags.nf in the nf-core/chrmtags pipeline
+// This file holds several functions specific to the workflow/mitotags.nf in the nf-core/mitotags pipeline
 //
 
 class WorkflowChrmtags {

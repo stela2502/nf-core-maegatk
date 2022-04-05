@@ -10,7 +10,7 @@ on:
 jobs:
   run-tower:
     name: Run AWS full tests
-    if: github.repository == 'nf-core/chrmtags'
+    if: github.repository == 'nf-core/mitotags'
     runs-on: ubuntu-latest
     steps:
       - name: Launch workflow via tower
@@ -25,10 +25,10 @@ jobs:
           compute_env: ${{ secrets.TOWER_COMPUTE_ENV }}
           pipeline: ${{ github.repository }}
           revision: ${{ github.sha }}
-          workdir: s3://${{ secrets.AWS_S3_BUCKET }}/work/chrmtags/work-${{ github.sha }}
+          workdir: s3://${{ secrets.AWS_S3_BUCKET }}/work/mitotags/work-${{ github.sha }}
           parameters: |
             {
-              "outdir": "s3://${{ secrets.AWS_S3_BUCKET }}/chrmtags/results-${{ github.sha }}"
+              "outdir": "s3://${{ secrets.AWS_S3_BUCKET }}/mitotags/results-${{ github.sha }}"
             }
           profiles: test_full,aws_tower
           pre_run_script: 'export NXF_VER=21.10.3'

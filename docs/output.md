@@ -1,4 +1,4 @@
-# nf-core/chrmtags: Output
+# nf-core/mitotags: Output
 
 ## Introduction
 

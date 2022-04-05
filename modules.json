@@ -1,6 +1,6 @@
 {
-    "name": "nf-core/chrmtags",
-    "homePage": "https://github.com/nf-core/chrmtags",
+    "name": "nf-core/mitotags",
+    "homePage": "https://github.com/nf-core/mitotags",
     "repos": {
         "nf-core/modules": {
             "bcftools/mpileup": {
